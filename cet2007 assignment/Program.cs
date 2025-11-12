@@ -4,6 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// Current status of manager:
+// - Can view player statistics sorted by total score descending
+//  - Can view game library sorted alphabetically by name
+// - User can choose to view either player stats or game library
+// - Displays player rank based on total score
+
+// To Do:
+// - Add functionality to add/remove games from library
+// - Add functionality to update player statistics
+// - Implement data persistence (save/load from file)
+// - Add search functionality for games and players
+
 namespace CET2007_Assignment
 {
     internal class Program
@@ -22,79 +34,169 @@ namespace CET2007_Assignment
                 , new GameLibrary("Hades", "Roguelike", 2020)
             };
 
+
+
             // Sample player stats
 
             List<PlayerStats> players = new List<PlayerStats> {
-                new PlayerStats("Alice", 150, 12000)
-                , new PlayerStats("Bob", 200, 18000)
-                , new PlayerStats("Charlie", 100, 8000)
+                new PlayerStats("Alice", 000000, 150, 12000)
+                , new PlayerStats("Bob", 000001, 200, 18000)
+                , new PlayerStats("Charlie", 000002, 100, 8000)
             };
+
+            // Sort players numerically by total score descending
+            players = players.OrderByDescending(p => p.TotalScore).ToList();
+
+            // Sort games alphabetically by name
+            games.Sort();
+
+
 
             // Display header
 
-            Console.WriteLine(" === Game Library & Player Stats Manager ===");
+            Console.WriteLine(" === Game Library & Player Stats Manager ===\n");
 
-            // Display player stats
+            // User decision to view either player stats or game library
 
-            Console.WriteLine("\n--- Player Statistics ---");
+            Console.WriteLine("Select an option:");
+            Console.WriteLine("1. View Player Statistics");
+            Console.WriteLine("2. View Game Library");
+            Console.WriteLine("3. Search player");
+            Console.Write("Enter choice: ");
+            string choice = Console.ReadLine();
+            Console.WriteLine(choice);
 
-            foreach (var player in players)
+            if (choice == "1")
             {
-                Console.WriteLine($"Player: {player.PlayerName}, Games Played: {player.GamesPlayed}, Total Score: {player.TotalScore}");
+                Console.WriteLine("\n--- Viewing Player Statistics ---");
+                foreach (var player in players)
+                {
+                    Console.WriteLine($"\nPlayer: {player.PlayerName}, Games Played: {player.GamesPlayed}, Total Score: {player.TotalScore}");
+
+                }
+            }
+            else if (choice == "2")
+            {
+                Console.WriteLine("\n--- Viewing Game Library ---");
+                foreach (var game in games)
+                {
+                    Console.WriteLine($"\nName: {game.Name}, Genre: {game.Genre}, Year: {game.Year}");
+                }
+            }
+            else if (choice == "3")
+            {
+                Console.WriteLine("\n--- Search Player ---");
+                Console.Write("Enter player name to search: ");
+                string searchName = Console.ReadLine();
+                var foundPlayer = players.FirstOrDefault(p => p.PlayerName.Equals(searchName, StringComparison.OrdinalIgnoreCase));
+                if (foundPlayer != null)
+                {
+                    Console.WriteLine($"\nPlayer found: {foundPlayer.PlayerName}, Games Played: {foundPlayer.GamesPlayed}, Total Score: {foundPlayer.TotalScore}");
+                }
+                else
+                {
+                    Console.WriteLine("\nPlayer not found.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice. Please restart the program and select either 1 or 2.");
             }
 
-            // Display games
-
-            Console.WriteLine("\n--- Game Library ---");
-
-            foreach (var game in games)
+            Console.WriteLine("\nWould you like to generate a report?");
+            string sReport = Console.ReadLine().ToLowerInvariant();
+            if (sReport == "yes")
             {
-                Console.WriteLine($"Name: {game.Name}, Genre: {game.Genre}, Year: {game.Year}");
+                Console.WriteLine("\n--- Player Top Score Ranking ---");
+                foreach (var player in players)
+                {
+                    Console.WriteLine($"\nPlayer: {player.PlayerName}, Games Played: {player.GamesPlayed}, Total Score: {player.TotalScore}");
+
+                    // Display the player's rank
+                    int rank = players.IndexOf(player) + 1;
+                    Console.WriteLine($"Rank: {rank}");
+
+                }
+                Console.WriteLine("\n--- Most Active Players ---");
+                var mostActivePlayers = players.OrderByDescending(p => p.GamesPlayed).Take(3);
+                foreach (var player in mostActivePlayers)
+                {
+                    Console.WriteLine($"\nPlayer: {player.PlayerName}, Games Played: {player.GamesPlayed}, Total Score: {player.TotalScore}");
+                }
             }
+
         }
 
-    }
-
-    class PlayerStats
-    {
-        // Public read-only properties so callers can access the data
-        public string PlayerName { get; }
-        public int GamesPlayed { get; }
-        public int TotalScore { get; }
-
-        public PlayerStats(string sPlayerName, int iGamesPlayed, int iTotalScore)
+        class PlayerStats
         {
-            PlayerName = sPlayerName;
-            GamesPlayed = iGamesPlayed;
-            TotalScore = iTotalScore;
+            // Public read-only properties so callers can access the data
+            public string PlayerName { get; }
+            public int GamesPlayed { get; }
+            public int TotalScore { get; }
+
+            public int Id { get; }
+
+            public PlayerStats(string sPlayerName, int ID, int iGamesPlayed, int iTotalScore)
+            {
+                PlayerName = sPlayerName;
+                GamesPlayed = iGamesPlayed;
+                TotalScore = iTotalScore;
+                Id = ID;
+            }
+
+
+            public override string ToString() => PlayerName;
         }
 
-        // Optional: override ToString() if you prefer using "{player}" directly
-        public override string ToString() => PlayerName;
-    }
-
-    // GameLibrary class representing a game in the library
-    class GameLibrary : IComparable<GameLibrary>
-    {
-        // Public read-only properties
-        public string Name { get; }
-        public string Genre { get; }
-        public int Year { get; }
-
-        public GameLibrary(string sName, string sGenre, int iYear)
+        // GameLibrary class representing a game in the library
+        class GameLibrary : IComparable<GameLibrary>
         {
-            Name = sName;
-            Genre = sGenre;
-            Year = iYear;
+            // Public read-only properties
+            public string Name { get; }
+            public string Genre { get; }
+            public int Year { get; }
+
+            public GameLibrary(string sName, string sGenre, int iYear)
+            {
+                Name = sName;
+                Genre = sGenre;
+                Year = iYear;
+            }
+
+            // Implement CompareTo to satisfy IComparable<T>
+            public int CompareTo(GameLibrary other)
+            {
+                if (other == null) return 1;
+                return string.Compare(Name, other.Name, StringComparison.OrdinalIgnoreCase);
+            }
+
+            public override string ToString() => Name;
         }
 
-        // Implement CompareTo to satisfy IComparable<T>
-        public int CompareTo(GameLibrary other)
+        class SearchFunctionality
         {
-            if (other == null) return 1;
-            return string.Compare(Name, other.Name, StringComparison.OrdinalIgnoreCase);
+
+
         }
 
-        public override string ToString() => Name;
+        class Logger
+        {
+            // Placeholder for future logging implementation
+            // Important actions should be logged with timestamps, such as adding/removing games or updating player stats
+
+        }
+
+        class DataPersistence
+        {
+            // Placeholder for future data persistence implementation
+            public DataPersistence() { }
+        }
+
+        class Admin
+        {
+            // Add and remove games from library
+            // Update player statistics
+            // Add new players
+        }
     }
 }
