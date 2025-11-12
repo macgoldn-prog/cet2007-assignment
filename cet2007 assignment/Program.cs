@@ -62,6 +62,8 @@ namespace CET2007_Assignment
             Console.WriteLine("1. View Player Statistics");
             Console.WriteLine("2. View Game Library");
             Console.WriteLine("3. Search player");
+            Console.WriteLine("4. Admin Functionality (Add/Remove Games, Add/Update Player Stats)");
+
             Console.Write("Enter choice: ");
             string choice = Console.ReadLine();
             Console.WriteLine(choice);
@@ -98,6 +100,24 @@ namespace CET2007_Assignment
                     Console.WriteLine("\nPlayer not found.");
                 }
             }
+            else if (choice == "4")
+            {
+                // Placeholder for future admin functionality
+                Console.WriteLine("\n--- Admin Functionality ---");
+                Admin admin = new Admin();
+                admin.ManageGameLibrary();
+                foreach (var game in games)
+                {
+                    Console.WriteLine($"\nName: {game.Name}, Genre: {game.Genre}, Year: {game.Year}");
+                }
+            }
+            else if (choice == "5")
+            {
+                // Placeholder for future data persistence functionality
+                Console.WriteLine("\n--- Data Persistence ---");
+                Console.WriteLine("This section is under development.");
+            }
+
             else
             {
                 Console.WriteLine("Invalid choice. Please restart the program and select either 1 or 2.");
@@ -175,7 +195,7 @@ namespace CET2007_Assignment
 
         class SearchFunctionality
         {
-
+        
 
         }
 
@@ -195,6 +215,39 @@ namespace CET2007_Assignment
         class Admin
         {
             // Add and remove games from library
+
+            public void ManageGameLibrary()
+            {
+                Console.WriteLine("--- Admin: Manage Game Library ---");
+                Console.WriteLine("1. Add Game");
+                Console.WriteLine("2. Remove Game");
+                Console.Write("Enter choice: ");
+                string adminChoice = Console.ReadLine();
+                if (adminChoice == "1")
+                {
+                    // Add game logic
+                    Console.Write("Enter game name: ");
+                    string name = Console.ReadLine();
+                    Console.Write("Enter game genre: ");
+                    string genre = Console.ReadLine();
+                    Console.Write("Enter game year: ");
+                    int year = int.Parse(Console.ReadLine());
+                    // Add the new game to the library (not implemented)
+                    Console.WriteLine($"Game '{name}' added to the library.");
+                }
+                else if (adminChoice == "2")
+                {
+                    // Remove game logic
+                    Console.Write("Enter game name to remove: ");
+                    string nameToRemove = Console.ReadLine();
+                    // Remove the game from the library (not implemented)
+                    Console.WriteLine($"Game '{nameToRemove}' removed from the library.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice.");
+                }
+            }
             // Update player statistics
             // Add new players
         }
