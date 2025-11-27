@@ -1,10 +1,17 @@
 ﻿using System;
+using System.Data.SqlClient;
 
 namespace CET2007_Assignment
 {
     internal class Admin
     {
+
+        private readonly Logger logger;
         // Add and remove games from library
+
+        public Admin(Logger logger) { 
+            logger = logger;
+        }
 
         public void ManageGameLibrary()
         {
@@ -18,24 +25,31 @@ namespace CET2007_Assignment
                 // Add game logic
                 Console.Write("Enter game name: ");
                 string name = Console.ReadLine();
+                logger.Log("Admin", $"Adding game: {name}");
                 Console.Write("Enter game genre: ");
                 string genre = Console.ReadLine();
+                logger.Log("Admin", $"Game genre: {genre}");
                 Console.Write("Enter game year: ");
                 int year = int.Parse(Console.ReadLine());
+                logger.Log("Admin", $"Game year: {year}");
                 // Add the new game to the library (not implemented)
                 Console.WriteLine($"Game '{name}' added to the library.");
+                logger.Log("Admin", $"Game '{name}' added to the library.");
             }
             else if (adminChoice == "2")
             {
                 // Remove game logic
                 Console.Write("Enter game name to remove: ");
                 string nameToRemove = Console.ReadLine();
+                logger.Log("Admin", $"Removing game: {nameToRemove}");
                 // Remove the game from the library (not implemented)
                 Console.WriteLine($"Game '{nameToRemove}' removed from the library.");
+                logger.Log("Admin", $"Game '{nameToRemove}' removed from the library.");
             }
             else
             {
                 Console.WriteLine("Invalid choice.");
+                logger.Log("Admin", "Invalid choice in ManageGameLibrary");
             }
         }
         // Update player statistics

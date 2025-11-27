@@ -24,6 +24,12 @@ namespace CET2007_Assignment
     {
         static void Main(string[] args)
         {
+            // Initialising the logger for logging events
+
+            Logger logger = new Logger.GetInstance();
+            logger.Log("Application", "Manager started");
+
+
             // GAME LIBRARY & PLAYER STATS MANAGER
 
             // Sample data for testing
@@ -67,6 +73,8 @@ namespace CET2007_Assignment
             Console.Write("Enter choice: ");
             string choice = Console.ReadLine();
             Console.WriteLine(choice);
+
+            logger.Log("User", $"Selected option {choice}");
 
             if (choice == "1")
             {
@@ -143,6 +151,8 @@ namespace CET2007_Assignment
                 }
             }
 
+            logger.Log("Application", "Manager ended, saving log to file");
+            logger.SaveLogToFile();
 
         }
 
@@ -164,19 +174,19 @@ namespace CET2007_Assignment
 
             public Report()
             {
-                logger = logger.GetInstance;
+                logger = Logger.GetInstance();
             }
 
-            private void Summary(List<ReportLog> log)
-            {
-                if (log == null || log.Count == 0)
+            private void Summary(List<ReportLog> log) { 
+                if log.Count == 0
                 {
-                    logger.Log("No report data available.");
+                    logger.Log("Report", "No data to generate report.");
                     return;
                 }
-
-                
+                // Generate summary report
             }
+
+
         }
 
     }
