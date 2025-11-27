@@ -34,9 +34,39 @@ namespace CET2007_Assignment
             var logEntry = new _logEntry(source, message);
             logEntry.Timestamp = DateTime.Now;
             _logEntry.Add(logEntry);
-            SaveLogToFile();
-
 
         }
+        public void SaveLogToFile()
+        {
+            try
+            {
+                var json = JsonSerializer.Serialize(_logEntry);
+                File.WriteAllText(logFilePath, json);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving log to file: {ex.Message}");
+            }
+        }
+        private void LoadLogFromFile()
+        {
+            try
+            {
+                if (File.Exists(logFilePath))
+                {
+                    var json = File.ReadAllText(logFilePath);
+                    var logEntries = JsonSerializer.Deserialize<List<LoggerEntry>>(json);
+                    if (logEntries != null)
+                    {
+                        _logEntry.AddRange(logEntries);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading log from file: {ex.Message}");
+            }
+        }
+
     }
 }
