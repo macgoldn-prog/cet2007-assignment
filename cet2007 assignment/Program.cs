@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,8 +51,6 @@ namespace CET2007_Assignment
 
             // Sort games alphabetically by name
             games.Sort();
-
-
 
             // Display header
 
@@ -112,7 +112,7 @@ namespace CET2007_Assignment
             }
             else if (choice == "5")
             {
-               
+
                 Console.WriteLine("\n--- Data Persistence ---");
             }
 
@@ -143,6 +143,7 @@ namespace CET2007_Assignment
                 }
             }
 
+
         }
 
 
@@ -152,11 +153,31 @@ namespace CET2007_Assignment
 
         class SearchFunctionality
         {
-        
+
 
         }
 
+        class Report
+        {
+            private Logger logger;
+            private string ReportPath = "reportlog.txt";
 
+            public Report()
+            {
+                logger = logger.GetInstance;
+            }
+
+            private void Summary(List<ReportLog> log)
+            {
+                if (log == null || log.Count == 0)
+                {
+                    logger.Log("No report data available.");
+                    return;
+                }
+
+                
+            }
+        }
 
     }
 }
