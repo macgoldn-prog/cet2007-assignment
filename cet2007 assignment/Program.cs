@@ -102,7 +102,6 @@ namespace CET2007_Assignment
             }
             else if (choice == "4")
             {
-                // Placeholder for future admin functionality
                 Console.WriteLine("\n--- Admin Functionality ---");
                 Admin admin = new Admin();
                 admin.ManageGameLibrary();
@@ -113,9 +112,8 @@ namespace CET2007_Assignment
             }
             else if (choice == "5")
             {
-                // Placeholder for future data persistence functionality
+               
                 Console.WriteLine("\n--- Data Persistence ---");
-                Console.WriteLine("This section is under development.");
             }
 
             else
