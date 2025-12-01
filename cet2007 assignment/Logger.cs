@@ -36,7 +36,7 @@ namespace CET2007_Assignment
             _logEntry.Add(logEntry);
 
         }
-        public void SaveLogToFile()
+        public void SaveLogToFile() // change Log saving and loading to .txt NOT JSON - games and players are json only. 
         {
             try
             {
