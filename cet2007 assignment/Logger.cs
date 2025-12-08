@@ -1,47 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace CET2007_Assignment
 {
     public class Logger
     {
-       
         private static readonly Logger instance = new Logger();
-
-        // In-memory buffer for log entries
-        private readonly List<ReportLog> logs = new List<ReportLog>();
+        private static readonly string logFilePath = "log.txt";
 
         // Prevent external construction
         private Logger() { }
 
-        // Return the singleton instance
         public static Logger GetInstance()
         {
             return instance;
         }
 
-        public void Log(string source, string message)
-        {
-            var entry = $"[{source}] {message}";
-            Console.WriteLine(entry);
-            logs.Add(new ReportLog(entry));
-        }
-
-        public void SaveLogToFile()
+        private void WriteEntry(string entry)
         {
             try
             {
-                if (logs.Count == 0) return;
-                var lines = logs.Select(l => $"{l.Timestamp:O} {l.Message}");
-                File.AppendAllLines("log.txt", lines);
-                logs.Clear();
+                Console.WriteLine(entry);
+                File.AppendAllText(logFilePath, entry + Environment.NewLine);
             }
             catch (Exception)
             {
-                // try catch to prevent any failures in logging to crash the application
+                // exceptions so logging cannot crash the app
             }
+        }
+
+        // timestamp + message
+        public void Log(string message)
+        {
+            string timestamp = DateTime.Now.ToString("HH:mm:ss");
+            WriteEntry($"[{timestamp}] {message}");
+        }
+
+        public void Log(string source, string message)
+        {
+            string timestamp = DateTime.Now.ToString("HH:mm:ss");
+            WriteEntry($"[{timestamp}] [{source}] {message}");
+        }
+        public void SaveLogToFile()
+        {
+            // nothing - to be removed in future versions
         }
     }
 }

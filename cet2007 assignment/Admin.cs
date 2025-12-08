@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.SqlClient;
 
 namespace CET2007_Assignment
 {
@@ -10,16 +9,10 @@ namespace CET2007_Assignment
 
         public Admin()
         {
-          
             this.logger = Logger.GetInstance();
         }
 
         // Add and remove games from library
-
-        public Admin(Logger logger) { 
-            this.logger = logger;
-
-        }
 
         public void ManageGameLibrary()
         {
@@ -60,7 +53,6 @@ namespace CET2007_Assignment
                 logger.Log("Admin", "Invalid choice in ManageGameLibrary");
             }
         }
-        // Update player statistics
-        // Add new players
+
     }
 }
