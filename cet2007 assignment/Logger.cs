@@ -28,7 +28,7 @@ namespace CET2007_Assignment
                 // exceptions so logging cannot crash the app
             }
         }
-
+  
         // timestamp + message
         public void Log(string message)
         {

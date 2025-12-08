@@ -76,79 +76,86 @@ namespace CET2007_Assignment
 
             logger.Log("User", $"Selected option {choice}");
 
-            if (choice == "1")
+            switch (choice)
             {
-                Console.WriteLine("\n--- Viewing Player Statistics ---");
-                foreach (var player in players)
-                {
-                    Console.WriteLine($"\nPlayer: {player.PlayerName}, Games Played: {player.GamesPlayed}, Total Score: {player.TotalScore}");
+                case "1":
+                    Console.WriteLine("\n--- Viewing Player Statistics ---");
+                    foreach (var player in players)
+                    {
+                        Console.WriteLine($"\nPlayer: {player.PlayerName}, Games Played: {player.GamesPlayed}, Total Score: {player.TotalScore}");
 
-                }
-            }
-            else if (choice == "2")
-            {
-                Console.WriteLine("\n--- Viewing Game Library ---");
-                foreach (var game in games)
-                {
-                    Console.WriteLine($"\nName: {game.Name}, Genre: {game.Genre}, Year: {game.Year}");
-                }
-            }
-            else if (choice == "3")
-            {
-                Console.WriteLine("\n--- Search Player ---");
-                Console.Write("Enter player name to search: ");
-                string searchName = Console.ReadLine();
-                var foundPlayer = players.FirstOrDefault(p => p.PlayerName.Equals(searchName, StringComparison.OrdinalIgnoreCase));
-                if (foundPlayer != null)
-                {
-                    Console.WriteLine($"\nPlayer found: {foundPlayer.PlayerName}, Games Played: {foundPlayer.GamesPlayed}, Total Score: {foundPlayer.TotalScore}");
-                }
-                else
-                {
-                    Console.WriteLine("\nPlayer not found.");
-                }
-            }
-            else if (choice == "4")
-            {
-                Console.WriteLine("\n--- Admin Functionality ---");
-                Admin admin = new Admin();
-                admin.ManageGameLibrary();
-                foreach (var game in games)
-                {
-                    Console.WriteLine($"\nName: {game.Name}, Genre: {game.Genre}, Year: {game.Year}");
-                }
-            }
-            else if (choice == "5")
-            {
+                    }
+                    break;
 
-                Console.WriteLine("\n--- Data Persistence ---");
-            }
+                case "2":
+                    Console.WriteLine("\n--- Viewing Game Library ---");
+                    foreach (var game in games)
+                    {
+                        Console.WriteLine($"\nName: {game.Name}, Genre: {game.Genre}, Year: {game.Year}");
+                    }
+                    break;
 
-            else
-            {
-                Console.WriteLine("Invalid choice. Please restart the program and select either 1 or 2.");
+                case "3":
+                    Console.WriteLine("\n--- Search Player ---");
+                    Console.Write("Enter player name to search: ");
+                    string searchName = Console.ReadLine();
+                    var foundPlayer = players.FirstOrDefault(p => p.PlayerName.Equals(searchName, StringComparison.OrdinalIgnoreCase));
+                    if (foundPlayer != null)
+                    {
+                        Console.WriteLine($"\nPlayer found: {foundPlayer.PlayerName}, Games Played: {foundPlayer.GamesPlayed}, Total Score: {foundPlayer.TotalScore}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nPlayer not found.");
+                    }
+                    break;
+
+                case "4":
+                    Console.WriteLine("\n--- Admin Functionality ---");
+                    Admin admin = new Admin();
+                    admin.ManageGameLibrary();
+                    foreach (var game in games)
+                    {
+                        Console.WriteLine($"\nName: {game.Name}, Genre: {game.Genre}, Year: {game.Year}");
+                    }
+                    break;
+
+                case "5":
+                    Console.WriteLine("\n--- Data Persistence ---");
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid choice. Please restart the program and select either 1 or 2.");
+                    break;
             }
 
             Console.WriteLine("\nWould you like to generate a report?");
             string sReport = Console.ReadLine().ToLowerInvariant();
-            if (sReport == "yes")
+
+            switch (sReport)
             {
-                Console.WriteLine("\n--- Player Top Score Ranking ---");
-                foreach (var player in players)
-                {
-                    Console.WriteLine($"\nPlayer: {player.PlayerName}, Games Played: {player.GamesPlayed}, Total Score: {player.TotalScore}");
+                case "yes":
+                    Console.WriteLine("\n--- Player Top Score Ranking ---");
+                    foreach (var player in players)
+                    {
+                        Console.WriteLine($"\nPlayer: {player.PlayerName}, Games Played: {player.GamesPlayed}, Total Score: {player.TotalScore}");
 
-                    // Display the player's rank
-                    int rank = players.IndexOf(player) + 1;
-                    Console.WriteLine($"Rank: {rank}");
+                        // Display the player's rank
+                        int rank = players.IndexOf(player) + 1;
+                        Console.WriteLine($"Rank: {rank}");
 
-                }
-                Console.WriteLine("\n--- Most Active Players ---");
-                var mostActivePlayers = players.OrderByDescending(p => p.GamesPlayed).Take(3);
-                foreach (var player in mostActivePlayers)
-                {
-                    Console.WriteLine($"\nPlayer: {player.PlayerName}, Games Played: {player.GamesPlayed}, Total Score: {player.TotalScore}");
-                }
+                    }
+                    Console.WriteLine("\n--- Most Active Players ---");
+                    var mostActivePlayers = players.OrderByDescending(p => p.GamesPlayed).Take(3);
+                    foreach (var player in mostActivePlayers)
+                    {
+                        Console.WriteLine($"\nPlayer: {player.PlayerName}, Games Played: {player.GamesPlayed}, Total Score: {player.TotalScore}");
+                    }
+                    break;
+
+                default:
+                    // no report requested
+                    break;
             }
 
             logger.Log("Application", "Manager ended, saving log to file");
