@@ -8,9 +8,6 @@ namespace CET2007_Assignment
         private static readonly Logger instance = new Logger();
         private static readonly string logFilePath = "log.txt";
 
-        // Prevent external construction
-        private Logger() { }
-
         public static Logger GetInstance()
         {
             return instance;
