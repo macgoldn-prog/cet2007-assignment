@@ -10,6 +10,8 @@ namespace CET2007_Assignment
 
         public Admin()
         {
+          
+            this.logger = Logger.GetInstance();
         }
 
         // Add and remove games from library

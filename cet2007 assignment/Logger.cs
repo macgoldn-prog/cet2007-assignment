@@ -1,22 +1,47 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace CET2007_Assignment
 {
     public class Logger
     {
-        internal static Logger GetInstance()
+       
+        private static readonly Logger instance = new Logger();
+
+        // In-memory buffer for log entries
+        private readonly List<ReportLog> logs = new List<ReportLog>();
+
+        // Prevent external construction
+        private Logger() { }
+
+        // Return the singleton instance
+        public static Logger GetInstance()
         {
-            throw new NotImplementedException();
+            return instance;
         }
 
         public void Log(string source, string message)
         {
-            Console.WriteLine($"[{source}] {message}"); 
+            var entry = $"[{source}] {message}";
+            Console.WriteLine(entry);
+            logs.Add(new ReportLog(entry));
         }
 
-        internal void SaveLogToFile()
+        public void SaveLogToFile()
         {
-            // new
+            try
+            {
+                if (logs.Count == 0) return;
+                var lines = logs.Select(l => $"{l.Timestamp:O} {l.Message}");
+                File.AppendAllLines("log.txt", lines);
+                logs.Clear();
+            }
+            catch (Exception)
+            {
+                // try catch to prevent any failures in logging to crash the application
+            }
         }
-    } 
+    }
 }
