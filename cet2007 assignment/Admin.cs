@@ -10,7 +10,8 @@ namespace CET2007_Assignment
         // Add and remove games from library
 
         public Admin(Logger logger) { 
-            logger = logger;
+            this.logger = logger;
+
         }
 
         public void ManageGameLibrary()
