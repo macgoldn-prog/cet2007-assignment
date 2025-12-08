@@ -7,6 +7,11 @@ namespace CET2007_Assignment
     {
 
         private readonly Logger logger;
+
+        public Admin()
+        {
+        }
+
         // Add and remove games from library
 
         public Admin(Logger logger) { 

@@ -26,7 +26,7 @@ namespace CET2007_Assignment
         {
             // Initialising the logger for logging events
 
-            Logger logger = new Logger.GetInstance();
+            Logger logger = Logger.GetInstance();
             logger.Log("Application", "Manager started");
 
 
@@ -177,8 +177,9 @@ namespace CET2007_Assignment
                 logger = Logger.GetInstance();
             }
 
-            private void Summary(List<ReportLog> log) { 
-                if log.Count == 0
+            private void Summary(List<ReportLog> log)
+            {
+                if (log.Count == 0)
                 {
                     logger.Log("Report", "No data to generate report.");
                     return;
