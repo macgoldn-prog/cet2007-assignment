@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3F17F06F-1E49-4280-AE3E-2F60FC26FAD7}</ProjectGuid>
+    <ProjectGuid>{8BA6AA89-29EE-4738-BCE6-D586DE722327}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CET2007ASSIGNMENTTESTS</RootNamespace>
-    <AssemblyName>CET2007ASSIGNMENTTESTS</AssemblyName>
+    <RootNamespace>CET2007Assignment_Tests</RootNamespace>
+    <AssemblyName>CET2007Assignment_Tests</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

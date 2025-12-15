@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36623.8 d17.14
+VisualStudioVersion = 17.14.36623.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cet2007 assignment", "cet2007 assignment\cet2007 assignment.csproj", "{3AFA84FD-58F9-44EA-AB63-6218E3155064}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CET2007Assignment_Tests", "CET2007Assignment_Tests\CET2007Assignment_Tests.csproj", "{8BA6AA89-29EE-4738-BCE6-D586DE722327}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3AFA84FD-58F9-44EA-AB63-6218E3155064}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AFA84FD-58F9-44EA-AB63-6218E3155064}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AFA84FD-58F9-44EA-AB63-6218E3155064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BA6AA89-29EE-4738-BCE6-D586DE722327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BA6AA89-29EE-4738-BCE6-D586DE722327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BA6AA89-29EE-4738-BCE6-D586DE722327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BA6AA89-29EE-4738-BCE6-D586DE722327}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

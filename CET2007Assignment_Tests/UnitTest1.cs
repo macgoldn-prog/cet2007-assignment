@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace CET2007ASSIGNMENTTESTS
+namespace CET2007Assignment_Tests
 {
     [TestClass]
     public class UnitTest1
