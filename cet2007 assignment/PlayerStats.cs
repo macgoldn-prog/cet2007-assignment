@@ -1,6 +1,6 @@
 ﻿namespace CET2007_Assignment
 {
-    internal class PlayerStats
+    public class PlayerStats
     {
         public string PlayerName { get; } // read only public properties
         public int GamesPlayed { get; }
