@@ -4,6 +4,11 @@ using System.Linq;
 
 namespace CET2007_Assignment
 {
+    /// <summary>
+    /// Provides a main point of execution for the application.
+    /// </summary>
+    /// <remarks>The <c>Program</c> class contains only a <c>Main</c> method, which initializes features
+    /// such as logging, sample game and player data, and the user interface.</remarks>
     internal class Program
     {
         static void Main()

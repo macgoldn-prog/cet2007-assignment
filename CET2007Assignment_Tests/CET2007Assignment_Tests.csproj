@@ -52,6 +52,7 @@
     <Compile Include="AddGame_DataTypeTest.cs" />
     <Compile Include="GameLibrary_Test.cs" />
     <Compile Include="LoggerTests.cs" />
+    <Compile Include="PlayerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
