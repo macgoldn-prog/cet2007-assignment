@@ -13,10 +13,10 @@ namespace CET2007_Assignment
     {
         static void Main()
         {
-            var logger = Logger.GetInstance();
+            var logger = Logger.GetInstance(); // initialize logger singleton
             logger.Log("Application", "Started");
 
-            var games = new List<GameLibrary>
+            var games = new List<GameLibrary> // sample game data
             {
                 new GameLibrary("The Witcher 3", "RPG", 2015),
                 new GameLibrary("Cyberpunk 2077", "RPG", 2020),
@@ -25,7 +25,7 @@ namespace CET2007_Assignment
                 new GameLibrary("Hades", "Roguelike", 2020)
             };
 
-            var players = new List<PlayerStats>
+            var players = new List<PlayerStats> // sample player data
             {
                 new PlayerStats("Alice", 0, 150, 12000),
                 new PlayerStats("Bob", 1, 200, 18000),

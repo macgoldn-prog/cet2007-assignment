@@ -2,14 +2,13 @@
 {
     internal class PlayerStats
     {
-        // Public read-only properties so callers can access the data
-        public string PlayerName { get; }
+        public string PlayerName { get; } // read only public properties
         public int GamesPlayed { get; }
         public int TotalScore { get; }
 
         public int Id { get; }
 
-        public PlayerStats(string sPlayerName, int ID, int iGamesPlayed, int iTotalScore)
+        public PlayerStats(string sPlayerName, int ID, int iGamesPlayed, int iTotalScore) // constructor
         {
             PlayerName = sPlayerName;
             GamesPlayed = iGamesPlayed;
@@ -18,6 +17,6 @@
         }
 
 
-        public override string ToString() => PlayerName;
+        public override string ToString() => PlayerName; 
     }
 }
