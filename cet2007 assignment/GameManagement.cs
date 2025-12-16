@@ -41,10 +41,15 @@ namespace CET2007_Assignment
                 games.AddRange(loaded);
                 logger.Log("GameManagement", $"Loaded {games.Count} games from games.json");
             }
+            catch (System.Text.Json.JsonException jex)
+            {
+                logger.Log("GameManagement", $"Corrupt games.json: {jex.Message}");
+                Console.WriteLine($"Problem: saved games file is corrupt: {jex.Message}");
+            }
             catch (Exception ex)
             {
                 logger.Log("GameManagement", $"Failed to load games.json: {ex.Message}");
-                Console.WriteLine($"Warning: could not load saved games: {ex.Message}");
+                Console.WriteLine($"Problem: could not load saved games: {ex.Message}");
             }
         }
 

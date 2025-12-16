@@ -82,10 +82,12 @@
     <Compile Include="GameManagement.cs" />
     <Compile Include="GameLibrary.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="PlayerManager.cs" />
     <Compile Include="PlayerStats.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportLog.cs" />
+    <Compile Include="UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
