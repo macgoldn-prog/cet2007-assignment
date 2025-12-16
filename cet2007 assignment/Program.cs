@@ -14,13 +14,15 @@ namespace CET2007_Assignment
     {
         static void Main()
         {
-            // Logger
+            // Logger is a singleton, instantiate it once
 
             Logger logger = Logger.GetInstance();
             logger.Log("Application", "Started");
 
 
             // GAME LIBRARY & PLAYER STATS MANAGER
+
+            // sample data within program to simulate a source of data to work with for screencast demo
 
 
             List<GameLibrary> games = new List<GameLibrary> {
@@ -174,5 +176,26 @@ namespace CET2007_Assignment
 
         }
 
+        static PlayerStats SearchPlayerByIdLinear(List<PlayerStats> players, int id)
+        {
+            if (players == null) throw new ArgumentNullException(nameof(players));
+            return players.Find(p => p.Id == id);
+        }
+
+        static PlayerStats SearchPlayerByIdBinary(List<PlayerStats> players, int id)
+        {
+            if (players == null) throw new ArgumentNullException(nameof(players));
+
+            players.Sort((a, b) => a.Id.CompareTo(b.Id));
+            int left = 0, right = players.Count - 1;
+            while (left <= right)
+            {
+                int mid = left + (right - left) / 2;
+                if (players[mid].Id == id) return players[mid];
+                if (players[mid].Id < id) left = mid + 1;
+                else right = mid - 1;
+            }
+            return null;
+        }
     }
 }
