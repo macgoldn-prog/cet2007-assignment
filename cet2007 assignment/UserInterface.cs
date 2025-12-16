@@ -12,16 +12,16 @@ namespace CET2007_Assignment
         private readonly PlayerManager playerManager;
         private readonly Logger logger;
 
-        public UserInterface(List<GameLibrary> games, List<PlayerStats> players, GameManagement gm, PlayerManager pm)
+        public UserInterface(List<GameLibrary> games, List<PlayerStats> players, GameManagement gm, PlayerManager pm) // constructor
         {
-            this.games = games ?? throw new ArgumentNullException(nameof(games));
+            this.games = games ?? throw new ArgumentNullException(nameof(games)); // null checks on each 
             this.players = players ?? throw new ArgumentNullException(nameof(players));
             gameManagement = gm ?? throw new ArgumentNullException(nameof(gm));
             playerManager = pm ?? throw new ArgumentNullException(nameof(pm));
             logger = Logger.GetInstance();
         }
 
-        public void Run()
+        public void Run() // main loop
         {
             // Prepare data
             playerManager.SortByTotalScoreDesc(players);
@@ -31,7 +31,7 @@ namespace CET2007_Assignment
 
             while (true)
             {
-                Console.WriteLine("Select an option:");
+                Console.WriteLine("Select an option:"); // menu
                 Console.WriteLine("1. View Player Statistics");
                 Console.WriteLine("2. View Game Library");
                 Console.WriteLine("3. Search player by name");
@@ -43,27 +43,27 @@ namespace CET2007_Assignment
 
                 logger.Log("User", $"Selected option {choice}");
 
-                switch (choice)
+                switch (choice) 
                 {
                     case "1":
-                        ShowPlayers();
+                        ShowPlayers(); // view players
                         break;
                     case "2":
-                        ShowGames();
+                        ShowGames(); // view games
                         break;
                     case "3":
-                        SearchPlayerByName();
+                        SearchPlayerByName(); // search player by name
                         break;
                     case "4":
-                        gameManagement.ManageGameLibrary(games);
+                        gameManagement.ManageGameLibrary(games); // manage game library
                         break;
                     case "5":
-                        SearchPlayerById();
+                        SearchPlayerById(); // search player by id
                         break;
                     case "0":
-                        return;
+                        return; // exit
                     default:
-                        Console.WriteLine("Invalid choice. Try again.");
+                        Console.WriteLine("Invalid choice. Try again."); // invalid input
                         break;
                 }
 
@@ -135,10 +135,10 @@ namespace CET2007_Assignment
                 {
                     var p = players[i];
                     Console.WriteLine($"\nRank {i + 1}: Player: {p.PlayerName}, Games Played: {p.GamesPlayed}, Total Score: {p.TotalScore}");
-                }
+                } // full ranking
 
                 Console.WriteLine("\n--- Most Active Players ---");
-                var mostActive = players.OrderByDescending(p => p.GamesPlayed).Take(3);
+                var mostActive = players.OrderByDescending(p => p.GamesPlayed).Take(3); // top 3 most active players
                 foreach (var p in mostActive)
                 {
                     Console.WriteLine($"\nPlayer: {p.PlayerName}, Games Played: {p.GamesPlayed}, Total Score: {p.TotalScore}");
