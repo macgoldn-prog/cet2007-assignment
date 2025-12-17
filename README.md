@@ -1,4 +1,4 @@
-# Game Library and Player Manager
+# Game Library and Player Manager - Maciej Goldyn (bi79fd)
 
 **What does this project do?**
 
